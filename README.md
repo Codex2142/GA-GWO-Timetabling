@@ -1,4 +1,4 @@
-# STRUKTUR FOLDER
+# STRUKTUR API
 ```sh
 .
 ├── /master/
