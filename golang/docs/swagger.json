@@ -1,0 +1,1185 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Backend API untuk manajemen penjadwalan sekolah dengan Guided GA-GWO algorithm",
+        "title": "Timetabling Backend API",
+        "contact": {
+            "name": "API Support"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:12000",
+    "basePath": "/api",
+    "paths": {
+        "/guru": {
+            "get": {
+                "description": "Get a list of all guru",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Guru"
+                ],
+                "summary": "Get all guru",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Guru"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new guru",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Guru"
+                ],
+                "summary": "Create guru",
+                "parameters": [
+                    {
+                        "description": "Guru data",
+                        "name": "guru",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Guru"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Guru"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/guru/{id}": {
+            "get": {
+                "description": "Get a specific guru by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Guru"
+                ],
+                "summary": "Get guru by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Guru ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Guru"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing guru",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Guru"
+                ],
+                "summary": "Update guru",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Guru ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated guru data",
+                        "name": "guru",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Guru"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Guru"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a guru by ID",
+                "tags": [
+                    "Guru"
+                ],
+                "summary": "Delete guru",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Guru ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/kelas": {
+            "get": {
+                "description": "Get a list of all kelas",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Get all kelas",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Kelas"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new kelas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Create kelas",
+                "parameters": [
+                    {
+                        "description": "Kelas data",
+                        "name": "kelas",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Kelas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Kelas"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/kelas/{id}": {
+            "get": {
+                "description": "Get a specific kelas by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Get kelas by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Kelas ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Kelas"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing kelas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Update kelas",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Kelas ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated kelas data",
+                        "name": "kelas",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Kelas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Kelas"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a kelas by ID",
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Delete kelas",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Kelas ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/mapel": {
+            "get": {
+                "description": "Get a list of all mapel",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mapel"
+                ],
+                "summary": "Get all mapel",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Mapel"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new mapel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mapel"
+                ],
+                "summary": "Create mapel",
+                "parameters": [
+                    {
+                        "description": "Mapel data",
+                        "name": "mapel",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Mapel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Mapel"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/mapel/{id}": {
+            "get": {
+                "description": "Get a specific mapel by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mapel"
+                ],
+                "summary": "Get mapel by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Mapel ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Mapel"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing mapel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Mapel"
+                ],
+                "summary": "Update mapel",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Mapel ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated mapel data",
+                        "name": "mapel",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Mapel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Mapel"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a mapel by ID",
+                "tags": [
+                    "Mapel"
+                ],
+                "summary": "Delete mapel",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Mapel ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/relasi-guru-mapel": {
+            "get": {
+                "description": "Get a list of all relasi guru mapel",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RelasiGuruMapel"
+                ],
+                "summary": "Get all relasi guru mapel",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.RelasiGuruMapel"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new relasi guru mapel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RelasiGuruMapel"
+                ],
+                "summary": "Create relasi guru mapel",
+                "parameters": [
+                    {
+                        "description": "Relasi guru mapel data",
+                        "name": "relasi",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.RelasiGuruMapel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.RelasiGuruMapel"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/relasi-guru-mapel/{id}": {
+            "get": {
+                "description": "Get a specific relasi guru mapel by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RelasiGuruMapel"
+                ],
+                "summary": "Get relasi guru mapel by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Relasi ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.RelasiGuruMapel"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing relasi guru mapel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RelasiGuruMapel"
+                ],
+                "summary": "Update relasi guru mapel",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Relasi ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated relasi data",
+                        "name": "relasi",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.RelasiGuruMapel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.RelasiGuruMapel"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a relasi guru mapel by ID",
+                "tags": [
+                    "RelasiGuruMapel"
+                ],
+                "summary": "Delete relasi guru mapel",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Relasi ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/scheduler/generate": {
+            "post": {
+                "description": "Start scheduling process. This endpoint starts the background process and returns a success message immediately. To get progress, listen to /api/scheduler/progress via SSE.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Scheduler"
+                ],
+                "summary": "Generate schedule using GA-GWO",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/scheduler/progress": {
+            "get": {
+                "description": "Connect to this endpoint using EventSource in the frontend. It will trigger generation and stream progress.",
+                "produces": [
+                    "text/event-stream"
+                ],
+                "tags": [
+                    "Scheduler"
+                ],
+                "summary": "Stream scheduling progress via SSE",
+                "responses": {}
+            }
+        },
+        "/slot": {
+            "get": {
+                "description": "Get a list of all slot",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slot"
+                ],
+                "summary": "Get all slot",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Slot"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new slot",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slot"
+                ],
+                "summary": "Create slot",
+                "parameters": [
+                    {
+                        "description": "Slot data",
+                        "name": "slot",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Slot"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Slot"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/slot/{id}": {
+            "get": {
+                "description": "Get a specific slot by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slot"
+                ],
+                "summary": "Get slot by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slot ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Slot"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing slot",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Slot"
+                ],
+                "summary": "Update slot",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slot ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated slot data",
+                        "name": "slot",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Slot"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Slot"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a slot by ID",
+                "tags": [
+                    "Slot"
+                ],
+                "summary": "Delete slot",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Slot ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/wali-kelas": {
+            "get": {
+                "description": "Get a list of all wali kelas",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WaliKelas"
+                ],
+                "summary": "Get all wali kelas",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.WaliKelas"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new wali kelas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WaliKelas"
+                ],
+                "summary": "Create wali kelas",
+                "parameters": [
+                    {
+                        "description": "Wali kelas data",
+                        "name": "wali",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.WaliKelas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.WaliKelas"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/wali-kelas/{id}": {
+            "get": {
+                "description": "Get a specific wali kelas by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WaliKelas"
+                ],
+                "summary": "Get wali kelas by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Wali ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.WaliKelas"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing wali kelas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WaliKelas"
+                ],
+                "summary": "Update wali kelas",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Wali ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated wali data",
+                        "name": "wali",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.WaliKelas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.WaliKelas"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a wali kelas by ID",
+                "tags": [
+                    "WaliKelas"
+                ],
+                "summary": "Delete wali kelas",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Wali ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Guru": {
+            "type": "object",
+            "properties": {
+                "guru_id": {
+                    "type": "integer"
+                },
+                "nama_guru": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Kelas": {
+            "type": "object",
+            "properties": {
+                "kelas_id": {
+                    "type": "integer"
+                },
+                "nama_kelas": {
+                    "type": "string"
+                },
+                "tingkatan": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Mapel": {
+            "type": "object",
+            "properties": {
+                "jam_per_minggu": {
+                    "type": "integer"
+                },
+                "kode_mapel": {
+                    "type": "string"
+                },
+                "mapel_id": {
+                    "type": "integer"
+                },
+                "mgmp": {
+                    "type": "string"
+                },
+                "nama_mapel": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.RelasiGuruMapel": {
+            "type": "object",
+            "properties": {
+                "durasi": {
+                    "type": "integer"
+                },
+                "guru_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "mapel_id": {
+                    "type": "integer"
+                },
+                "tingkatan": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Slot": {
+            "type": "object",
+            "properties": {
+                "hari": {
+                    "type": "string"
+                },
+                "jam_mulai": {
+                    "type": "string"
+                },
+                "jam_selesai": {
+                    "type": "string"
+                },
+                "jenis_slot": {
+                    "type": "string"
+                },
+                "slot_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.WaliKelas": {
+            "type": "object",
+            "properties": {
+                "guru_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "kelas_id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

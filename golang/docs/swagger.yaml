@@ -1,0 +1,794 @@
+basePath: /api
+definitions:
+  models.Guru:
+    properties:
+      guru_id:
+        type: integer
+      nama_guru:
+        type: string
+    type: object
+  models.Kelas:
+    properties:
+      kelas_id:
+        type: integer
+      nama_kelas:
+        type: string
+      tingkatan:
+        type: integer
+    type: object
+  models.Mapel:
+    properties:
+      jam_per_minggu:
+        type: integer
+      kode_mapel:
+        type: string
+      mapel_id:
+        type: integer
+      mgmp:
+        type: string
+      nama_mapel:
+        type: string
+    type: object
+  models.RelasiGuruMapel:
+    properties:
+      durasi:
+        type: integer
+      guru_id:
+        type: integer
+      id:
+        type: integer
+      mapel_id:
+        type: integer
+      tingkatan:
+        type: integer
+    type: object
+  models.Slot:
+    properties:
+      hari:
+        type: string
+      jam_mulai:
+        type: string
+      jam_selesai:
+        type: string
+      jenis_slot:
+        type: string
+      slot_id:
+        type: integer
+    type: object
+  models.WaliKelas:
+    properties:
+      guru_id:
+        type: integer
+      id:
+        type: integer
+      kelas_id:
+        type: integer
+    type: object
+host: localhost:12000
+info:
+  contact:
+    name: API Support
+  description: Backend API untuk manajemen penjadwalan sekolah dengan Guided GA-GWO
+    algorithm
+  title: Timetabling Backend API
+  version: "1.0"
+paths:
+  /guru:
+    get:
+      description: Get a list of all guru
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Guru'
+            type: array
+      summary: Get all guru
+      tags:
+      - Guru
+    post:
+      consumes:
+      - application/json
+      description: Create a new guru
+      parameters:
+      - description: Guru data
+        in: body
+        name: guru
+        required: true
+        schema:
+          $ref: '#/definitions/models.Guru'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Guru'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create guru
+      tags:
+      - Guru
+  /guru/{id}:
+    delete:
+      description: Delete a guru by ID
+      parameters:
+      - description: Guru ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete guru
+      tags:
+      - Guru
+    get:
+      description: Get a specific guru by ID
+      parameters:
+      - description: Guru ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Guru'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get guru by ID
+      tags:
+      - Guru
+    put:
+      consumes:
+      - application/json
+      description: Update an existing guru
+      parameters:
+      - description: Guru ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated guru data
+        in: body
+        name: guru
+        required: true
+        schema:
+          $ref: '#/definitions/models.Guru'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Guru'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update guru
+      tags:
+      - Guru
+  /kelas:
+    get:
+      description: Get a list of all kelas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Kelas'
+            type: array
+      summary: Get all kelas
+      tags:
+      - Kelas
+    post:
+      consumes:
+      - application/json
+      description: Create a new kelas
+      parameters:
+      - description: Kelas data
+        in: body
+        name: kelas
+        required: true
+        schema:
+          $ref: '#/definitions/models.Kelas'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Kelas'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create kelas
+      tags:
+      - Kelas
+  /kelas/{id}:
+    delete:
+      description: Delete a kelas by ID
+      parameters:
+      - description: Kelas ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete kelas
+      tags:
+      - Kelas
+    get:
+      description: Get a specific kelas by ID
+      parameters:
+      - description: Kelas ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Kelas'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get kelas by ID
+      tags:
+      - Kelas
+    put:
+      consumes:
+      - application/json
+      description: Update an existing kelas
+      parameters:
+      - description: Kelas ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated kelas data
+        in: body
+        name: kelas
+        required: true
+        schema:
+          $ref: '#/definitions/models.Kelas'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Kelas'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update kelas
+      tags:
+      - Kelas
+  /mapel:
+    get:
+      description: Get a list of all mapel
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Mapel'
+            type: array
+      summary: Get all mapel
+      tags:
+      - Mapel
+    post:
+      consumes:
+      - application/json
+      description: Create a new mapel
+      parameters:
+      - description: Mapel data
+        in: body
+        name: mapel
+        required: true
+        schema:
+          $ref: '#/definitions/models.Mapel'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Mapel'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create mapel
+      tags:
+      - Mapel
+  /mapel/{id}:
+    delete:
+      description: Delete a mapel by ID
+      parameters:
+      - description: Mapel ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete mapel
+      tags:
+      - Mapel
+    get:
+      description: Get a specific mapel by ID
+      parameters:
+      - description: Mapel ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Mapel'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get mapel by ID
+      tags:
+      - Mapel
+    put:
+      consumes:
+      - application/json
+      description: Update an existing mapel
+      parameters:
+      - description: Mapel ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated mapel data
+        in: body
+        name: mapel
+        required: true
+        schema:
+          $ref: '#/definitions/models.Mapel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Mapel'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update mapel
+      tags:
+      - Mapel
+  /relasi-guru-mapel:
+    get:
+      description: Get a list of all relasi guru mapel
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.RelasiGuruMapel'
+            type: array
+      summary: Get all relasi guru mapel
+      tags:
+      - RelasiGuruMapel
+    post:
+      consumes:
+      - application/json
+      description: Create a new relasi guru mapel
+      parameters:
+      - description: Relasi guru mapel data
+        in: body
+        name: relasi
+        required: true
+        schema:
+          $ref: '#/definitions/models.RelasiGuruMapel'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.RelasiGuruMapel'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create relasi guru mapel
+      tags:
+      - RelasiGuruMapel
+  /relasi-guru-mapel/{id}:
+    delete:
+      description: Delete a relasi guru mapel by ID
+      parameters:
+      - description: Relasi ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete relasi guru mapel
+      tags:
+      - RelasiGuruMapel
+    get:
+      description: Get a specific relasi guru mapel by ID
+      parameters:
+      - description: Relasi ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RelasiGuruMapel'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get relasi guru mapel by ID
+      tags:
+      - RelasiGuruMapel
+    put:
+      consumes:
+      - application/json
+      description: Update an existing relasi guru mapel
+      parameters:
+      - description: Relasi ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated relasi data
+        in: body
+        name: relasi
+        required: true
+        schema:
+          $ref: '#/definitions/models.RelasiGuruMapel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RelasiGuruMapel'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update relasi guru mapel
+      tags:
+      - RelasiGuruMapel
+  /scheduler/generate:
+    post:
+      description: Start scheduling process. This endpoint starts the background process
+        and returns a success message immediately. To get progress, listen to /api/scheduler/progress
+        via SSE.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Generate schedule using GA-GWO
+      tags:
+      - Scheduler
+  /scheduler/progress:
+    get:
+      description: Connect to this endpoint using EventSource in the frontend. It
+        will trigger generation and stream progress.
+      produces:
+      - text/event-stream
+      responses: {}
+      summary: Stream scheduling progress via SSE
+      tags:
+      - Scheduler
+  /slot:
+    get:
+      description: Get a list of all slot
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Slot'
+            type: array
+      summary: Get all slot
+      tags:
+      - Slot
+    post:
+      consumes:
+      - application/json
+      description: Create a new slot
+      parameters:
+      - description: Slot data
+        in: body
+        name: slot
+        required: true
+        schema:
+          $ref: '#/definitions/models.Slot'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Slot'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create slot
+      tags:
+      - Slot
+  /slot/{id}:
+    delete:
+      description: Delete a slot by ID
+      parameters:
+      - description: Slot ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete slot
+      tags:
+      - Slot
+    get:
+      description: Get a specific slot by ID
+      parameters:
+      - description: Slot ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Slot'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get slot by ID
+      tags:
+      - Slot
+    put:
+      consumes:
+      - application/json
+      description: Update an existing slot
+      parameters:
+      - description: Slot ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated slot data
+        in: body
+        name: slot
+        required: true
+        schema:
+          $ref: '#/definitions/models.Slot'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Slot'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update slot
+      tags:
+      - Slot
+  /wali-kelas:
+    get:
+      description: Get a list of all wali kelas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.WaliKelas'
+            type: array
+      summary: Get all wali kelas
+      tags:
+      - WaliKelas
+    post:
+      consumes:
+      - application/json
+      description: Create a new wali kelas
+      parameters:
+      - description: Wali kelas data
+        in: body
+        name: wali
+        required: true
+        schema:
+          $ref: '#/definitions/models.WaliKelas'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.WaliKelas'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create wali kelas
+      tags:
+      - WaliKelas
+  /wali-kelas/{id}:
+    delete:
+      description: Delete a wali kelas by ID
+      parameters:
+      - description: Wali ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete wali kelas
+      tags:
+      - WaliKelas
+    get:
+      description: Get a specific wali kelas by ID
+      parameters:
+      - description: Wali ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WaliKelas'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get wali kelas by ID
+      tags:
+      - WaliKelas
+    put:
+      consumes:
+      - application/json
+      description: Update an existing wali kelas
+      parameters:
+      - description: Wali ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated wali data
+        in: body
+        name: wali
+        required: true
+        schema:
+          $ref: '#/definitions/models.WaliKelas'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WaliKelas'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update wali kelas
+      tags:
+      - WaliKelas
+schemes:
+- http
+swagger: "2.0"
